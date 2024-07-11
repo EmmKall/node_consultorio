@@ -9,6 +9,7 @@ app.use( morgan(':method :url :status :res[content-length] - :response-time ms')
 require( './db/app.db' );
 //Routes
 const userRoute = require( './routes/user.route' );
+const authRoute = require( './routes/auth.route' );
 const port = process.env.PORT || 3001;
 
 // habilitar body-parser
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: false }));
 
 /* Routes */
 app.use( '/user', userRoute );
+app.use( '/auth', authRoute );
 /* Init app */
 app.listen( port, () => {
     console.log(`---------- Server running on port ${port} -------------`);
