@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema({
     user: {
         type: String,
         required: false
+    },
+    isConfirmed: {
+        type: Boolean,
+        required: false,
     }
 });
 /* Before to save data */

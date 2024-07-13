@@ -28,7 +28,7 @@ exports.store = async ( req, res, next ) =>
         //Valid data
 
         try {
-            const row = new User( { email, name, last_name, password, phone, user } );
+            const row = new User( { email, name, last_name, password, phone, user, isConfirmed: false } );
             const data = await User.create( row );
             return res.status( 200 ).json( { status: 200, msg: 'Request successfully', data: data } )
         } catch( error ){

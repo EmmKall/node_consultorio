@@ -3,6 +3,8 @@ const morgan = require( 'morgan' );
 const bodyParser = require('body-parser');
 require('dotenv').config()
 
+const middleware = require( './controllers/verify.controller' );
+
 const app = express();
 app.use( morgan(':method :url :status :res[content-length] - :response-time ms') );
 //DB-conection
@@ -17,8 +19,9 @@ app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({extended: false }));
 
 /* Routes */
-app.use( '/user', userRoute );
 app.use( '/auth', authRoute );
+app.use( middleware.verifyToken );
+app.use( '/user', userRoute );
 /* Init app */
 app.listen( port, () => {
     console.log(`---------- Server running on port ${port} -------------`);
